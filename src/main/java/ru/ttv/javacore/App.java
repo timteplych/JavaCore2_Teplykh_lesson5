@@ -43,6 +43,13 @@ public class App
         ArrayProcessingThread arrayProcessingThread2 = new ArrayProcessingThread(arr2);
         arrayProcessingThread1.start();
         arrayProcessingThread2.start();
+        try {
+            arrayProcessingThread1.join();
+            arrayProcessingThread2.join();
+        }catch (InterruptedException e){
+            e.printStackTrace();
+        }
+
         System.arraycopy(arr1, 0, arr, 0, h);
         System.arraycopy(arr2, 0, arr, h, h);
         System.out.println(System.currentTimeMillis() - a);
